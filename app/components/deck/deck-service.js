@@ -14,88 +14,88 @@ angular.module('blackjackApp.deck.deck-service', [])
      * @id deckFactory
      * @description Create a deck with common functions
      */
-	.factory('deckFactory', ['SUITS', 'RANKS', function(SUITS, RANKS) {
-      
-      function getCards () {
-        var deck = [];
+  .factory('deckFactory', ['SUITS', 'RANKS', function(SUITS, RANKS) {
+    
+    function getCards () {
+      var deck = [];
 
-        SUITS.forEach(function (suit) {
-          RANKS.forEach(function (rank) {
-            deck.push({
-              rank: rank.rank,
-              points: rank.points,
-              suit: suit
-            });
+      SUITS.forEach(function (suit) {
+        RANKS.forEach(function (rank) {
+          deck.push({
+            rank: rank.rank,
+            points: rank.points,
+            suit: suit
           });
         });
+      });
 
-        return deck;
-      };
-      
-      function Deck (cards) {
-        this.cards = getCards();
-        this.inPlay = [];
-      };
-      
-      Deck.prototype.rejoin = function () {
-        this.cards = this.cards.concat(this.inPlay);
-        this.inPlay = [];
-        
-        return this;
-      };
+      return deck;
+    };
 
-      /**
-       * Using Fisher-Yates shuffle algorithm, as in
-       * http://bost.ocks.org/mike/shuffle/
-       */
-      Deck.prototype.shuffle = function () {
-        var deck = this.cards,
-            m = deck.length,
-            t,
-            i;
+    function Deck (cards) {
+      this.cards = getCards();
+      this.inPlay = [];
+    };
 
-        while (m) {
+    Deck.prototype.rejoin = function () {
+      this.cards = this.cards.concat(this.inPlay);
+      this.inPlay = [];
 
-          i = Math.floor(Math.random() * m--);
+      return this;
+    };
 
-          t = deck[m];
-          deck[m] = deck[i];
-          deck[i] = t;
-        }
+    /**
+     * Using Fisher-Yates shuffle algorithm, as in
+     * http://bost.ocks.org/mike/shuffle/
+     */
+    Deck.prototype.shuffle = function () {
+      var deck = this.cards,
+          m = deck.length,
+          t,
+          i;
 
-        return deck;
-      };
-      
-      /**
-       * @ngdoc method
-       * @name end
-       * @methodOf deckFactory
-       * @description Retrieves the next card from the stack.
-       */
-      Deck.prototype.getNextCard = function (faceUp) {
-        var card = this.cards[0];
+      while (m) {
 
-        // Is this card displayed to the user?
-        card.faceUp = faceUp;
+        i = Math.floor(Math.random() * m--);
 
-        // Remove the card from the stack, as it has already been dealt
-        this.cards.shift();
+        t = deck[m];
+        deck[m] = deck[i];
+        deck[i] = t;
+      }
 
-        // Add a reference to the card in the inPlay section (so we can join them when the
-        // game is restarted
-        this.inPlay.push(card);
+      return deck;
+    };
 
-        // When no cards are left in the deck, rebuild and shuffle
-        if (!this.cards.length) {
-          this.rejoin().shuffle();
-        }
+    /**
+     * @ngdoc method
+     * @name end
+     * @methodOf deckFactory
+     * @description Retrieves the next card from the stack.
+     */
+    Deck.prototype.getNextCard = function (faceUp) {
+      var card = this.cards[0];
 
-        return card;
-      };
-      
-      Deck.build = function () {
-        return new Deck();
-      };
-      
-      return Deck;
-	}]);
+      // Is this card displayed to the user?
+      card.faceUp = faceUp;
+
+      // Remove the card from the stack, as it has already been dealt
+      this.cards.shift();
+
+      // Add a reference to the card in the inPlay section (so we can join them when the
+      // game is restarted
+      this.inPlay.push(card);
+
+      // When no cards are left in the deck, rebuild and shuffle
+      if (!this.cards.length) {
+        this.rejoin().shuffle();
+      }
+
+      return card;
+    };
+
+    Deck.build = function () {
+      return new Deck();
+    };
+
+    return Deck;
+  }]);

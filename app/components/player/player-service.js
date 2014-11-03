@@ -14,26 +14,26 @@ angular.module('blackjackApp.player.player-service', [])
      * @id playerFactory
      * @description Handles the players
      */
-	.factory('playerFactory', [function() {
+  .factory('playerFactory', [function() {
       
-      function Player (name, showPoints) {
-        this.name = name;
-        this.showPoints = showPoints;
-        this.points = 0;
-        this.cards = [];
-        this.serveCard = true;
-      };
-      
-      Player.prototype.addCard = function (card) {
-        this.cards.push(card);
-        this.points += card.points;
-        
-        return this;
-      };
-      
-      Player.build = function (name, showPoints) {
-        return new Player(name, showPoints);
-      };
-      
-      return Player;
-	}]);
+    function Player (name, showPoints) {
+      this.name = name;
+      this.showPoints = showPoints;
+      this.points = 0;
+      this.cards = [];
+      this.serveCard = true;
+    };
+
+    Player.prototype.addCard = function (card) {
+      this.cards.push(card);
+      this.points += card.points;
+
+      return this;
+    };
+
+    Player.build = function (name, showPoints) {
+      return new Player(name, showPoints);
+    };
+
+    return Player;
+  }]);
