@@ -1,0 +1,18 @@
+<section class="player">
+  <header class="player-description">
+    
+    <b>{{ player.name }}</b>
+    <span class="player-points"
+          ng-show="player.showPoints">
+      - {{ player.points }} points
+    </span>
+    
+  </header>
+
+  <ul class="player-cards">
+    <li ng-repeat="card in player.cards"
+        bj-card
+        bj-animate-on-add>
+    </li>
+  </ul>
+</section>

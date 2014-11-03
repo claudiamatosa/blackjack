@@ -1,0 +1,79 @@
+.card-wrapper {
+  display: inline-block;
+  margin: 20px;
+  opacity: 0;
+  perspective: 1000;
+  transition: opacity ease 0.2s, transform ease-in-out 0.3s;
+  transform: scale(0, 0);
+}
+
+.card-wrapper.added {
+  opacity: 1;
+  transform: scale(1, 1);
+}
+
+.card {
+  position: relative;
+  transition: 0.6s;
+  transform-style: preserve-3d;
+}
+
+.card-wrapper.added .card {
+  
+}
+
+.card-wrapper.face-down .card {
+  transform: rotateY(180deg);
+}
+
+.card, .card .front, .card .back {
+  height: 150px;
+  width: 110px;
+}
+
+.card .front, .card .back {
+  backface-visibility: hidden;
+  border-radius: 5px;
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.card .front {
+  color: #000000;
+  background-color: #FFFFFF;
+  position: relative;
+  padding: 55px 0 0 0;
+  text-align: center;
+  transform: rotateY(0deg);
+  z-index: 2;
+}
+
+.card .front p {
+  margin: 0;
+  padding: 0;
+}
+
+.card .front .rank {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.card .front .suit {
+  font-size: 10px;
+}
+
+/* From Lea Verou's css patterns gallery
+ * http://lea.verou.me/css3patterns/
+ */
+.card .back {
+  background:
+  radial-gradient(black 15%, transparent 16%) 0 0,
+  radial-gradient(black 15%, transparent 16%) 8px 8px,
+  radial-gradient(rgba(255,255,255,.1) 15%, transparent 20%) 0 1px,
+  radial-gradient(rgba(255,255,255,.1) 15%, transparent 20%) 8px 9px;
+  background-color:#282828;
+  background-size:16px 16px;
+  transform: rotateY(180deg);
+}

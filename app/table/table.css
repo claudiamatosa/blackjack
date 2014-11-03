@@ -1,0 +1,27 @@
+.game-table {
+  color: #FFFFFF;
+  background-color: #046B00;
+  box-sizing: border-box;
+  margin: auto;
+  padding: 30px 15px 30px 10px;
+  width: 950px;
+}
+
+.game-table .player-cards {
+  box-sizing: border-box;
+  display: block;
+  list-style: none;
+  height: 190px;
+  margin: 0;
+  padding: 0;
+}
+
+.game-table .game-controls {
+  margin-top: 50px;
+  text-align: center;
+}
+
+.game-table .player-description,
+.game-table .game-result {
+  margin: 0 20px;
+}

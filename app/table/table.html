@@ -1,0 +1,30 @@
+<section class="game-table">
+  
+  <section class="player"
+           ng-repeat="player in table.players"
+           bj-player="{{ player.name }}">
+  </section>
+  
+  <section class="game-controls">
+    <button class="pure-button"
+            ng-click="table.hit()"
+            ng-disabled="!table.gameStarted">
+      Hit
+    </button>
+    
+    <button class="pure-button"
+            ng-click="table.stick()"
+            ng-disabled="!table.gameStarted">
+      Stick
+    </button>
+    
+    <button class="pure-button pure-button-primary"
+            ng-click="table.start()">
+      Start
+    </button>
+  </section>
+  
+  <section class="game-result">
+    {{ table.result }}
+  </section>
+</section>

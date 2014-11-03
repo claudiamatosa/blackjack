@@ -1,0 +1,16 @@
+{
+  "name": "blackjack",
+  "version": "0.0.0",
+  "homepage": "http://claudiamatosa.com/code/blackjack",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "angular": "1.2.x",
+    "angular-route": "1.2.x",
+    "angular-loader": "1.2.x",
+    "angular-mocks": "~1.2.x",
+    "html5-boilerplate": "~4.3.0",
+    "scriptjs": "~2.5.7",
+    "pure": "~0.5.0"
+  }
+}
