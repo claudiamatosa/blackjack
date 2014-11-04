@@ -32,8 +32,15 @@ angular.module('blackjackApp.table', ['ngRoute'])
     }
 })
 
-.controller('TableCtrl', ['deckFactory', 'playerFactory', 'RESULT_MESSAGES', 'WINNING_POINTS', 'MAXIMUM_POINTS', 'PLAYERS',
-   function (deckFactory, playerFactory, RESULT_MESSAGES, WINNING_POINTS, MAXIMUM_POINTS, PLAYERS) {
+.controller('TableCtrl',
+    ['deckFactory',
+     'playerFactory',
+     'RESULT_MESSAGES',
+     'WINNING_POINTS',
+     'MAXIMUM_POINTS',
+     'PLAYERS',
+     
+    function (deckFactory, playerFactory, RESULT_MESSAGES, WINNING_POINTS, MAXIMUM_POINTS, PLAYERS) {
        var vm = this;
 
        /**
@@ -56,6 +63,12 @@ angular.module('blackjackApp.table', ['ngRoute'])
             var player,
                 key;
                           
+            if (Object.prototype.toString.call(PLAYERS) !== '[object Object]' ||
+                !Object.keys(PLAYERS).length) {
+                
+                throw new Error('The player list is empty or does not exist.');
+            }
+            
             this.players = {};
             
             for (key in PLAYERS) {

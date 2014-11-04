@@ -10,17 +10,56 @@ describe('blackjackApp.table module', function () {
         var scope,
             deckFactory,
             playerFactory,
-            createController;
+            createController,
+            RESULT_MESSAGES,
+            WINNING_POINTS,
+            MAXIMUM_POINTS,
+            PLAYERS;
 
-        beforeEach(inject(function ($rootScope, $controller, _deckFactory_, _playerFactory_) {
+        beforeEach(inject(function (
+            $rootScope,
+            $controller,
+            _deckFactory_,
+            _playerFactory_,
+            _RESULT_MESSAGES_,
+            _WINNING_POINTS_,
+            _MAXIMUM_POINTS_,
+            _PLAYERS_
+        ) {
             deckFactory = _deckFactory_;
             playerFactory = _playerFactory_;
+            RESULT_MESSAGES = _RESULT_MESSAGES_;
+            WINNING_POINTS = _WINNING_POINTS_;
+            MAXIMUM_POINTS = _MAXIMUM_POINTS_;
+            PLAYERS = _PLAYERS_;
             scope = $rootScope.$new();
-
-            createController = function () {
-                return $controller('TableCtrl as table', {
-                    '$scope': scope
-                });
+            
+            /**
+             * Creates a controller using the passed dependencies
+             * 
+             * @param {Object} args - List of dependencies to overwrite,
+             * containing the values. Example:
+             * 
+             * {
+             *     'PLAYERS': {},
+             *     'deckFactory': function () {}
+             * }
+             */
+            createController = function (args) {
+                var key,
+                    mockedDependencies = {
+                        '$scope': scope
+                    };
+                
+                if (args) {
+                    for (key in args) {
+                        if (args.hasOwnProperty(key)) {
+                            mockedDependencies[key] = args[key];
+                        }
+                    } 
+                }
+                
+                return $controller('TableCtrl as table', mockedDependencies);
             };
         }));
         
@@ -57,5 +96,21 @@ describe('blackjackApp.table module', function () {
             });
         });
 
+        describe('createPlayers', function () {
+            var table;
+            
+            it('should throw when PLAYERS is not an object', function () {
+                var players = 'randomstring',
+                    createPlayers = function () {
+                        table = createController({'PLAYERS': players});
+
+                        table.createPlayers();
+                    };
+                
+                expect(createPlayers).toThrow();
+            });
+
+        });
+        
     });
 });
