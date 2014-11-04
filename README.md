@@ -12,12 +12,9 @@ The code can be viewed under `http://claudiamatosa.com/code/blackjack`.
 
 Install nodeJS, then run, from the root directory:
 
-    npm install -g bower grunt-cli
-    npm install
-    bower install
-    grunt connect
+    npm start
 
-If everything has worked successfully, navigate to http://localhost:9001.
+If everything has worked successfully, navigate to http://localhost:8000.
 
 ## Testing
 
