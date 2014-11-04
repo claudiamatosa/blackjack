@@ -3,7 +3,8 @@
 }
 
 body {
-  background-color: #046B00;
+  background-color:#046B00;
+  background-size:16px 16px;
 }
 
 [ng-cloak] {

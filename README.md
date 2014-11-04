@@ -17,6 +17,10 @@ Install nodeJS, then run, from the root directory:
 
 If everything has worked successfully, navigate to http://localhost:9001.
 
+## Testing
+
+This app contains some unit and end-to-end tests. In order to run them, follow [angular-seed's procedure](https://github.com/angular/angular-seed#testing). 
+
 ## Tools used
 
 - `angular-seed`, for the base structure and angular-route integration - https://github.com/angular/angular-seed

@@ -1,10 +1,13 @@
 .game-table {
   color: #FFFFFF;
-  background-color: #046B00;
   box-sizing: border-box;
   margin: auto;
   padding: 30px 15px 30px 10px;
   width: 950px;
+}
+
+.game-table .game-title {
+  margin: 0 0 15px 20px;
 }
 
 .game-table .player-cards {
