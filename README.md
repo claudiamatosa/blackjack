@@ -2,6 +2,8 @@
 
 A simple blackjack game written in AngularJS.
 
+[![Build Status](https://travis-ci.org/claudiamatosa/blackjack.svg?branch=master)](https://travis-ci.org/claudiamatosa/blackjack)
+
 ## Runing the project
 
 The code can be viewed under `http://claudiamatosa.com/code/blackjack`.
