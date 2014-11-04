@@ -8,40 +8,40 @@
  */
 angular.module('blackjackApp.deck.deck-service', [])
 
-    /**
-     * @ngdoc factory
-     * @name deckFactory
-     * @id deckFactory
-     * @description Create a deck with common functions
-     */
-  .factory('deckFactory', ['SUITS', 'RANKS', function(SUITS, RANKS) {
-    
-    function getCards () {
-      var deck = [];
+/**
+ * @ngdoc factory
+ * @name deckFactory
+ * @id deckFactory
+ * @description Create a deck with common functions
+ */
+.factory('deckFactory', ['SUITS', 'RANKS', function (SUITS, RANKS) {
 
-      SUITS.forEach(function (suit) {
-        RANKS.forEach(function (rank) {
-          deck.push({
-            rank: rank.rank,
-            points: rank.points,
-            suit: suit
-          });
+    function getCards() {
+        var deck = [];
+
+        SUITS.forEach(function (suit) {
+            RANKS.forEach(function (rank) {
+                deck.push({
+                    rank: rank.rank,
+                    points: rank.points,
+                    suit: suit
+                });
+            });
         });
-      });
 
-      return deck;
+        return deck;
     };
 
-    function Deck (cards) {
-      this.cards = getCards();
-      this.inPlay = [];
+    function Deck(cards) {
+        this.cards = getCards();
+        this.inPlay = [];
     };
 
     Deck.prototype.rejoin = function () {
-      this.cards = this.cards.concat(this.inPlay);
-      this.inPlay = [];
+        this.cards = this.cards.concat(this.inPlay);
+        this.inPlay = [];
 
-      return this;
+        return this;
     };
 
     /**
@@ -49,21 +49,21 @@ angular.module('blackjackApp.deck.deck-service', [])
      * http://bost.ocks.org/mike/shuffle/
      */
     Deck.prototype.shuffle = function () {
-      var deck = this.cards,
-          m = deck.length,
-          t,
-          i;
+        var deck = this.cards,
+            m = deck.length,
+            t,
+            i;
 
-      while (m) {
+        while (m) {
 
-        i = Math.floor(Math.random() * m--);
+            i = Math.floor(Math.random() * m--);
 
-        t = deck[m];
-        deck[m] = deck[i];
-        deck[i] = t;
-      }
+            t = deck[m];
+            deck[m] = deck[i];
+            deck[i] = t;
+        }
 
-      return deck;
+        return deck;
     };
 
     /**
@@ -73,29 +73,29 @@ angular.module('blackjackApp.deck.deck-service', [])
      * @description Retrieves the next card from the stack.
      */
     Deck.prototype.getNextCard = function (faceUp) {
-      var card = this.cards[0];
+        var card = this.cards[0];
 
-      // Is this card displayed to the user?
-      card.faceUp = faceUp;
+        // Is this card displayed to the user?
+        card.faceUp = faceUp;
 
-      // Remove the card from the stack, as it has already been dealt
-      this.cards.shift();
+        // Remove the card from the stack, as it has already been dealt
+        this.cards.shift();
 
-      // Add a reference to the card in the inPlay section (so we can join them when the
-      // game is restarted
-      this.inPlay.push(card);
+        // Add a reference to the card in the inPlay section (so we can join them when the
+        // game is restarted
+        this.inPlay.push(card);
 
-      // When no cards are left in the deck, rebuild and shuffle
-      if (!this.cards.length) {
-        this.rejoin().shuffle();
-      }
+        // When no cards are left in the deck, rebuild and shuffle
+        if (!this.cards.length) {
+            this.rejoin().shuffle();
+        }
 
-      return card;
+        return card;
     };
 
     Deck.build = function () {
-      return new Deck();
+        return new Deck();
     };
 
     return Deck;
-  }]);
+}]);

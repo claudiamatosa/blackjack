@@ -7,6 +7,7 @@ module.exports = function(config){
       'app/vendor/angular/angular.js',
       'app/vendor/angular-route/angular-route.js',
       'app/vendor/angular-mocks/angular-mocks.js',
+      'app/app.js',
       'app/components/**/*.js',
       'app/table/**/*.js'
     ],
@@ -15,13 +16,14 @@ module.exports = function(config){
 
     frameworks: ['jasmine'],
 
-    browsers : ['Chrome'],
+    browsers : ['PhantomJS'],
 
     plugins : [
             'karma-chrome-launcher',
             'karma-firefox-launcher',
             'karma-jasmine',
-            'karma-junit-reporter'
+            'karma-junit-reporter',
+            'karma-phantomjs-launcher'
             ],
 
     junitReporter : {
