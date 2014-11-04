@@ -109,6 +109,43 @@ describe('blackjackApp.table module', function () {
                 
                 expect(createPlayers).toThrow();
             });
+            
+            it('should create a list of players as provided by the PLAYERS array', function () {
+                var player,
+                    key,
+                    players = {
+                        foo: {
+                            name: 'Bar',
+                            showPoints: true
+                        },
+
+                        yo: {
+                            name: 'Man',
+                            showPoints: true
+                        },
+
+                        john: {
+                            name: 'Doe',
+                            showPoints: true
+                        }
+                    };
+                
+                table = createController({'PLAYERS': players});
+                
+                expect(table.players).toBeDefined();
+                
+                for (key in players) {
+                    if (players.hasOwnProperty(key)) {
+                        player = players[key];
+                        
+                        expect(table.players[key]).toBeDefined();
+                        expect(table.players[key].name).toBeDefined();
+                        expect(table.players[key].name).toEqual(player.name);
+                        expect(table.players[key].showPoints).toBeDefined();
+                        expect(table.players[key].showPoints).toEqual(player.showPoints);
+                    }
+                }
+            });
 
         });
         
