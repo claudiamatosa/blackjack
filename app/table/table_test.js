@@ -34,10 +34,26 @@ describe('blackjackApp.table module', function () {
                 spyOn(table, 'createDeck');
             });
             
+            it('should be defined', function () {
+                expect(table.setUpTable).toBeDefined();
+            });
+            
             it('should define gameStarted as false by default', function () {
                 table.setUpTable();
                 
                 expect(table.gameStarted).toBeFalsy();
+            });
+            
+            it('should create the players', function () {
+                table.setUpTable();
+                
+                expect(table.createPlayers).toHaveBeenCalled();
+            });
+            
+            it('should create a deck', function () {
+                table.setUpTable();
+                
+                expect(table.createDeck).toHaveBeenCalled();
             });
         });
 
