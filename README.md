@@ -6,7 +6,7 @@ A simple blackjack game written in AngularJS.
 
 ## Runing the project
 
-The code can be viewed under `http://claudiamatosa.com/code/blackjack`.
+The code can be viewed under `https://claudiamatosa.com/code/blackjack`.
 
 ### To run locally
 
